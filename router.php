@@ -20,7 +20,7 @@ if(!$LoadPGFromAFile){
 $ProtectedPages = array(
   "/TestPath",
   "/TestPath/",
-  "/A_Important_File.xml"
+  "/An_Important_File.xml"
   );
 }else{
   //Get From XML File
