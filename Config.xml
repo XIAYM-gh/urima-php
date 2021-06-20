@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes" ?>
+<Config>
+  <ProtectedList>
+    <Item>/TestPath</Item>
+    <Item>/TestPath/</Item>
+    
+    <Item>/An_Improtant_File.xml</Item>
+  </ProtectedList>
+</Config>
