@@ -1,16 +1,17 @@
 <?php
-// Return False means show the file normally.
-// 返回False代表直接返回这个文件.
-
+//Creator: XIAYM
 $dir = __DIR__;
+
+//Enable to print the error page directly?
+//HTML FILE ONLY or you will print your php codes on the page.
+$PrintPageDirectly = false;
 //Enable loading protected pages from a xml file?
 $LoadPGFromAFile = false;
 //XML File:
 $XMLPath = $dir . "/Config.xml";
-//Please use the file in this repo:
-//Config.xml
+//Please use the file in this repo: Config.xml
 
-//Set the pages you want to jump to.
+//Set the page you want to jump to.
 $P_404 = "/404.html";
 //Example: /var/www/404.html , just insert "/404.html".
 $P_403 = "/403.html";
@@ -33,7 +34,11 @@ $ProtectedPages = array(
 //403
 $fwp = $_SERVER["PHP_SELF"];
 if(in_array($fwp,$ProtectedPages)){
- echo "<script>window.location.href = \"".$P_403."\"</script>;";
+  if(!$PrintPageDirectly){
+ header("Location: $P_403");
+  }else{
+    echo file_get_contents($P_403);
+  }
 }else{
 //404
 $requestURI = $dir.$fwp;
@@ -41,7 +46,11 @@ $fstatus = file_exists(url_decode($requestURI));
 if($fstatus){
 return false;
 }else{
- echo "<script>window.location.href = \"".$P_404."\"</script>;";
+  if(!$PrintPageDirectly){
+ header("Location: $P_404");
+  }else{
+    echo file_get_contents($P_404);
+  }
 }
 }
 ?>
